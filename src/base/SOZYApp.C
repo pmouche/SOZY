@@ -4,6 +4,14 @@
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
+// Kernels
+#include "Potential.h"
+#include "PNPConc.h"
+
+// AuxKernels
+#include "Flux.h"
+
+
 template <>
 InputParameters
 validParams<SOZYApp>()
@@ -37,10 +45,8 @@ SOZYApp::registerApps()
   registerApp(SOZYApp);
 }
 
-void
-SOZYApp::registerObjectDepends(Factory & /*factory*/)
-{
-}
+// void
+// SOZYApp::registerObjectDepends(Factory & /*factory*/)
 
 // External entry point for dynamic object registration
 extern "C" void
@@ -49,14 +55,19 @@ SOZYApp__registerObjects(Factory & factory)
   SOZYApp::registerObjects(factory);
 }
 void
-SOZYApp::registerObjects(Factory & /*factory*/)
+SOZYApp::registerObjects(Factory & factory)
 {
+  registerKernel(Potential);
+  registerKernel(PNPConc);
+  
+  registerAux(Flux);
+
 }
 
-void
-SOZYApp::associateSyntaxDepends(Syntax & /*syntax*/, ActionFactory & /*action_factory*/)
-{
-}
+// void
+// SOZYApp::associateSyntaxDepends(Syntax & /*syntax*/, ActionFactory & /*action_factory*/)
+// {
+// }
 
 // External entry point for dynamic syntax association
 extern "C" void
