@@ -21,7 +21,7 @@ InputParameters validParams<PNPConc>()
 
   params.addRequiredCoupledVar("potential", "The electric field.");
   params.addRequiredParam<Real>("mobility", "The mobility of the diffusion species");
-  params.addRequiredParam<Real>("bulkconc", "The bulk concentration");
+  //params.addRequiredParam<Real>("bulkconc", "The bulk concentration");
   params.addRequiredParam<RealVectorValue>("gradchem", "gradient of chemical potential");
 
   return params;
@@ -39,7 +39,7 @@ PNPConc::PNPConc(const InputParameters & parameters) :
   
 
     _mobility(getParam<Real>("mobility")),
-    _bulkconc(getParam<Real>("bulkconc")),
+    //_bulkconc(getParam<Real>("bulkconc")),
 
     _gradchem(getParam<RealVectorValue>("gradchem"))
 

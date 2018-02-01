@@ -46,7 +46,7 @@ protected:
   unsigned int _potential_var;
 
   Real _mobility;
-  Real _bulkconc;
+
 
   RealVectorValue _gradchem;
 

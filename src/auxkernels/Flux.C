@@ -31,7 +31,7 @@ InputParameters validParams<Flux>()
   // Add a "coupling paramater" to get a variable from the input file.
   params.addRequiredCoupledVar("potential", "The electric field.");
   params.addRequiredCoupledVar("PNPConc", "The concentration");
-  params.addRequiredParam<Real>("bulkconc", "The bulk concentration");
+ 
   params.addRequiredParam<Real>("mobility", "The mobiliy of the ions");
   params.addRequiredParam<RealVectorValue>("gradchem", "gradient of chemical potential");
 
@@ -50,7 +50,7 @@ Flux::Flux(const InputParameters & parameters) :
 
     _conc(coupledValue("PNPConc")),
 
-    _bulkconc(getParam<Real>("bulkconc")),
+  
     _mobility(getParam<Real>("mobility")),
     _gradchem(getParam<RealVectorValue>("gradchem"))
 
@@ -66,7 +66,6 @@ Flux::computeValue()
   // parenthesis operator
   // Diff=
   return (_conc_gradient[_qp](_component)+
-          _mobility*_conc[_qp]*(_potential_gradient[_qp](_component)) +
-          _mobility*_bulkconc*_potential_gradient[_qp](_component));
+          _mobility*_conc[_qp]*(_potential_gradient[_qp](_component)));
   
 }

@@ -44,7 +44,7 @@ protected:
   const VariableGradient & _conc_gradient;
   const VariableValue & _conc;
 
-  Real _bulkconc;
+
   Real _mobility;
   RealVectorValue _gradchem;
 
