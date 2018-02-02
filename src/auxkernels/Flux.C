@@ -42,7 +42,7 @@ Flux::Flux(const InputParameters & parameters) :
     AuxKernel(parameters),
 
     // This will automatically convert the MooseEnum to an integer
-    _component(getParam<MooseEnum>("component")),
+    // _component(getParam<MooseEnum>("component")),
 
     // Get the gradient of the variable
     _potential_gradient(coupledGradient("potential")),
@@ -65,7 +65,7 @@ Flux::computeValue()
   // Note that getting a particular component of a gradient is done using the
   // parenthesis operator
   // Diff=
-  return (_conc_gradient[_qp](_component)+
+ return (_conc_gradient[_qp](_component)+
           _mobility*_conc[_qp]*(_potential_gradient[_qp](_component)));
-  
+   
 }

@@ -46,7 +46,7 @@
   [./potential_induced_A]
      type = Potential
      variable = potential
-     concentration = conA
+     PNPConc = conA
      permittivity = 449590000  #1/(4*pi*dielectric Zr*epsilon_o) Nm^2/C^2
      charge = -1
    [../]
@@ -70,7 +70,11 @@
   [./flux_A]
     type = Flux
     variable = flux_A
-    concentration = conA
+    PNPConc = conA
+    potential = potential
+    mobility = -4.51328e-11  # cm^2/(V-S)
+    gradchem = '0.0 0.0 0.0'
+    component = x
   [../]
  
 []
@@ -95,15 +99,15 @@
   [./Aleft]
     type = DirichletBC
     variable = conA
-    boundary = '10e17'
-    value = 1
+    boundary = '0'
+    value = 1e17
   [../]
 
   [./Aright]
     type = DirichletBC
     variable = conA
-    boundary = '10e20'
-    value = 0
+    boundary = '1'
+    value = 1e20
  [../]
 
 []
